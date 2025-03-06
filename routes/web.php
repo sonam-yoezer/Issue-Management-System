@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\IssueController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,4 +27,7 @@ require __DIR__.'/auth.php';
 Route:: get('admin/dashboard', [HomeController::class, 'index']) -> middleware(['auth', 'admin']) ;
 
 Route::get('user/dashboard', [UserController::class, 'index'])->middleware(['auth', 'user']);
+
+Route::post('/submit-issue', [IssueController::class, 'submit'])->name('submit.issue');
+
 
