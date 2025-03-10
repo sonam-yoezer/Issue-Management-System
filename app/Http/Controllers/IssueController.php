@@ -13,7 +13,6 @@ class IssueController extends Controller
         $validated = $request->validate([
             'module' => 'required|string|max:100',
             'issue_type' => 'required|string|max:200',
-            'priority' => 'required|string|in:high,medium,low',
             'description' => 'required|string|max:180', 
             'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', 
         ]);
@@ -30,7 +29,6 @@ class IssueController extends Controller
         $issues = new Issues();
         $issues->module = $validated['module'];
         $issues->issue_type = $validated['issue_type'];
-        $issues->priority = $validated['priority'];
         $issues->description = $validated['description'];
         $issues->img = $filePath; // Save file path in the database
         $issues->save();
