@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('module')->nullable();
             $table->string('issue_type')->nullable(); 
-            $table->string('priority')->nullable();
             $table->text('description')->nullable(); 
             $table->string('img')->nullable(); 
             $table->timestamps();
