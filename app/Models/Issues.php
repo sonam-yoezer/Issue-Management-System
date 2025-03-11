@@ -12,7 +12,6 @@ class Issues extends Model
     protected $fillable =[
       'module',
       'issue_type',
-      'priority',
       'description',
       'img'
     ];

@@ -1,104 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report an Issue</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
-    <div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
-        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Issue Report Form </h2>
-
-        @if(session('success'))
-            <div id="success-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-                <div class="bg-white p-6 rounded-md shadow-lg w-96 text-center">
-                    <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
-                    <h3 class="text-lg font-semibold text-green-700">Issue submitted successfully!</h3>
-                    <button id="close-modal" class="mt-4 px-6 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600">
-                        OK
-                    </button>
+<x-app-layout>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                  @include('user.form')
                 </div>
             </div>
-        @endif
-
-        <!-- Display Validation Errors -->
-        @if ($errors->any())
-            <div class="mb-4 p-3 bg-red-100 text-red-800 rounded-md">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="{{ route('submit.issue') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-
-            <div class="mb-4">
-                <label for="module" class="block text-sm font-medium text-gray-700">Module:</label>
-                <select id="module" name="module" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                    <option value="user-management">User Management</option>
-                    <option value="payment-processing">Payment Processing</option>
-                    <option value="dashboard">Dashboard</option>
-                    <option value="reporting">Reporting</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label for="issue_type" class="block text-sm font-medium text-gray-700">Issue Type:</label>
-                <select id="issue_type" name="issue_type" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                    <option value="bug">Bug</option>
-                    <option value="feature">Feature Request</option>
-                    <option value="performance">Performance Issue</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label for="description" class="block text-sm font-medium text-gray-700">Issue Description:</label>
-                <textarea id="description" name="description" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required></textarea>
-            </div>
-
-            <div class="mb-4">
-                <label for="priority" class="block text-sm font-medium text-gray-700">Priority:</label>
-                <select id="priority" name="priority" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                    <option value="high">Critical</option>
-                    <option value="medium">Major</option>
-                    <option value="low">Minor</option>
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label for="img" class="block text-sm font-medium text-gray-700">Upload Image</label>
-                <input type="file" id="img" name="img" accept=".jpg,.jpeg,.png" class="mt-1 block w-full border border-gray-300 p-2 rounded-md">
-            </div>
-
-            <div class="flex justify-center">
-                <button type="submit" class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600">
-                    Submit Issue
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
-
-    <!-- JavaScript to close the modal -->
-    <script>
-        // Close modal when 'OK' button is clicked
-        const closeModalButton = document.getElementById('close-modal');
-        if (closeModalButton) {
-            closeModalButton.addEventListener('click', () => {
-                // Hide the success modal
-                document.getElementById('success-modal').style.display = 'none';
-
-                // Optionally, clear the form if you want
-                document.querySelector('form').reset();
-            });
-        }
-    </script>
-</body>
-</html>
+</x-app-layout>
