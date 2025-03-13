@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable(); 
             $table->string('img')->nullable(); 
             $table->timestamps();
+            $table->dateTime('due_date')->nullable(); // Add due date for priority
         });
     }
 

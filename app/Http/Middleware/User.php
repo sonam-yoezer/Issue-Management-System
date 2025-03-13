@@ -17,9 +17,20 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user() -> role != 'user'){
+        \Log::info('Checking user authentication status: ' . Auth::check());
+        
+        if (Auth::user() == null) {
+            \Log::info('User is not authenticated.');
             return redirect('dashboard');
         }
+
+        \Log::info('User is authenticated: ' . Auth::check());
+        \Log::info('User role: ' . Auth::user()->role);
+
+        if (Auth::user()->role != 'user') {
+            return redirect('dashboard');
+        }
+
         return $next($request);
     }
 }
