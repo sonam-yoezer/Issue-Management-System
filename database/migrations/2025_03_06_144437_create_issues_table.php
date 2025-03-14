@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('issues', function (Blueprint $table) {
             $table->id();
             $table->string('module')->nullable();
-            $table->string('issue_type')->nullable(); 
-            $table->text('description')->nullable(); 
-            $table->string('img')->nullable(); 
+            $table->string('issue_type')->nullable();
+            $table->text('description')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
+            $table->dateTime('due_date')->nullable(); // Add due date for priority
         });
     }
 
