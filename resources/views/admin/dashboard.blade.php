@@ -13,7 +13,7 @@
 @endif
 
 <div class="container"> 
-    <h2 class="text-white bg-clip-padding">Submitted Issues</h2>
+    <h2 class="text-black bg-clip-padding">Submitted Issues</h2>
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -25,7 +25,7 @@
                     <th scope="col" class="px-6 py-3">Priority</th>
                     <th scope="col" class="px-6 py-3">Due Date</th>
                     <th scope="col" class="px-6 py-3">Time Left</th>
-                    <th scope="col" class="px-6 py-3">Assigned User</th>
+                    <th scope="col" class="px-6 py-3">Assigned To</th>
                 </tr>
             </thead>
             <tbody id="issue-table-body">
@@ -68,11 +68,11 @@
                         @endif
                     </td>
                     <td class="px-6 py-4">
-                        <form action="{{ route('assign.user', $issue->id) }}" method="POST">
+                        <form action="{{ route('assign.technician', $issue->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <select name="assigned_user_id" class="form-select" onchange="this.form.submit()">
-                                <option value="">Select User</option>
+                                <option value="">Select</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}" {{ $issue->assigned_user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                                 @endforeach

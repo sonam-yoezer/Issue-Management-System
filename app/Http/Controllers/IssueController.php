@@ -80,12 +80,6 @@ class IssueController extends Controller
     }
 
 
-
-
-
-
-
-
     public function assignUser(Request $request, $id) 
     {
         $validated = $request->validate([
@@ -139,6 +133,23 @@ class IssueController extends Controller
         $issue->save(); // Save changes
 
         return redirect()->back()->with('success', 'Issue updated successfully!'); // Redirect with success message
+    }
+    public function assignTechnician(Request $request, $issueId)
+    {
+        // Validate the assigned user ID
+        $request->validate([
+            'assigned_user_id' => 'required|exists:users,id',
+        ]);
+
+        // Find the issue by its ID
+        $issue = Issues::findOrFail($issueId);
+
+        // Update the issue with the assigned technician
+        $issue->assigned_user_id = $request->input('assigned_user_id');
+        $issue->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Technician assigned successfully.');
     }
 
 }

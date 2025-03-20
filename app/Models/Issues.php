@@ -14,7 +14,8 @@ class Issues extends Model
         'issue_type',
         'description',
         'img',
-        'priority', // Add priority to fillable fields
+        'priority', 
+        'status',
         'assigned_user_id', // Add assigned user ID to fillable fields
     ];
 
