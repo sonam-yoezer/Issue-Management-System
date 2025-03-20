@@ -6,6 +6,7 @@ use App\Http\Controllers\IssueController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TechnicianController;
 
 // Add broadcasting routes
 Broadcast::routes();
@@ -39,3 +40,10 @@ Route::post('/form', function () {
 });
 
 Route::post('/submit-issue', [IssueController::class, 'submit'])->name('submit.issue');
+Route::put('/issues/{issue}/assign', [IssueController::class, 'assignTechnician'])->name('assign.technician');
+
+
+Route::get('technician/dashboard', [TechnicianController::class, 'index'])->middleware(['auth'])->name('technician.dashboard');
+Route::get('/issue-report', [TechnicianController::class, 'showIssue'])->name('technician.issues');
+Route::patch('/issues/{id}/update-status', [TechnicianController::class, 'updateStatus'])->name('update.issue.status');
+
