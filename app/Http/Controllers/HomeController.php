@@ -13,4 +13,5 @@ class HomeController extends Controller
         $issues = Issues::with('user')->get(); // Fetch issues with assigned user
         return view('admin.dashboard', compact('users', 'issues')); // Pass users and issues to the view
     }
+
 }

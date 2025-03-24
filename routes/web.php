@@ -6,6 +6,7 @@ use App\Http\Controllers\IssueController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisteredUserController;
 
 // Add broadcasting routes
 Broadcast::routes();
@@ -39,3 +40,9 @@ Route::post('/form', function () {
 });
 
 Route::post('/submit-issue', [IssueController::class, 'submit'])->name('submit.issue');
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/users', [RegisteredUserController::class, 'registeredUsers'])->name('admin.user');
+    Route::get('/users/{id}/edit', [RegisteredUserController::class, 'edit'])->name('edit.user');  // Add this line
+    Route::put('/users/{id}', [RegisteredUserController::class, 'update'])->name('update.user');  // For updating user
+    Route::delete('/users/{id}', [RegisteredUserController::class, 'destroy'])->name('delete.user'); // Add this line
+});
