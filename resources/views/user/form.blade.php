@@ -1,5 +1,4 @@
 <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Issue Report Form </h2>
-<h1>Debug: Form is being included</h1>
 @if(session('success'))
     <div id="success-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
         <div class="bg-white p-6 rounded-md shadow-lg w-96 text-center">
